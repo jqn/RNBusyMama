@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import Reactotron from 'reactotron-react-native';
 
 import {getStorybookUI, configure} from '@storybook/react-native';
 
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
  * That is an exercise for the consumer though
  */
 configure(() => {
-  require('../../storybook/stories');
+  require('../components/stories');
 }, module);
 
 const StorybookUIRoot = getStorybookUI({port: 7007, onDeviceUI: true});
