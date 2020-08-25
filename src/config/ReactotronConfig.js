@@ -1,7 +1,9 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import Reactotron from 'reactotron-react-native';
+import {LogBox} from 'react-native';
 
-console.disableYellowBox = true;
+// Ignore all log notifications:
+LogBox.ignoreAllLogs();
 
 // First, set some configuration settings on how to connect to the app
 Reactotron.setAsyncStorageHandler(AsyncStorage);

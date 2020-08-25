@@ -11,26 +11,31 @@ const list = [
     title: 'Whole Foods',
     amount: '$ 0.70',
     subtitle: moment().format('MM/DD/YYYY h:mm:ss a'),
+    id: '1',
   },
   {
     title: 'Natural Grocers',
     amount: '$ 157.00',
     subtitle: moment().format('MM/DD/YYYY h:mm:ss a'),
+    id: '2',
   },
   {
     title: 'King Soopers',
     amount: '$ 1030.00',
     subtitle: moment().format('MM/DD/YYYY h:mm:ss a'),
+    id: '3',
   },
   {
     title: "Trader Joe's",
     amount: '$ 223.00',
     subtitle: moment().format('MM/DD/YYYY h:mm:ss a'),
+    id: '4',
   },
   {
     title: 'Chipotle',
     amount: '$ 5.00',
     subtitle: moment().format('MM/DD/YYYY h:mm:ss a'),
+    id: '5',
   },
 ];
 

@@ -23,7 +23,15 @@ configure(() => {
   require('../components/stories');
 }, module);
 
-const StorybookUIRoot = getStorybookUI({port: 7007, onDeviceUI: true});
+const StorybookUIRoot = getStorybookUI({
+  port: 7007,
+  onDeviceUI: true,
+  // persist last visited story
+  asyncStorage:
+    require('@react-native-community/async-storage').default ||
+    require('react-native').AsyncStorage ||
+    null,
+});
 
 class StorybookUIHMRRoot extends Component {
   render() {

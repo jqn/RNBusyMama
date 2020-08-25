@@ -1,7 +1,24 @@
 # Busy Mama
 Cross Platform mobile app for busy moms
 
-### Troubleshooting
+
+## Stack
+
+Built with:
+
+React Native
+
+## Features
+
+- React Navigation V5
+- Redux
+- Redux Persist
+- Storybook
+- Reactotron
+- Reactotron Storybook Switcher
+- Typechecking with PropTypes
+
+## Troubleshooting
 
 React Native Vector Icons - iconname not found
 

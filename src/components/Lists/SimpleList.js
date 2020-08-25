@@ -10,31 +10,37 @@ const list = [
     title: 'Username',
     icon: 'email',
     type: 'entypo',
+    id: '1',
   },
   {
     title: 'Phone',
     icon: 'smartphone',
     type: 'material',
+    id: '2',
   },
   {
     title: 'Notifications',
     icon: 'notifications',
     type: 'material',
+    id: '3',
   },
   {
     title: 'Privacy',
     icon: 'lock',
     type: 'material',
+    id: '4',
   },
   {
     title: 'Dark Mode',
     icon: 'md-moon',
     type: 'ionicon',
+    id: '5',
   },
   {
     title: 'Help',
     icon: 'md-help',
     type: 'ionicon',
+    id: '6',
   },
 ];
 

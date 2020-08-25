@@ -1,9 +1,14 @@
 import React, {useState, useEffect} from 'react';
+import {ActivityIndicator} from 'react-native';
+
+import {Linking, Platform} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import TransactionDetailScreen from '../containers/TransactionDetailScreen';
 import SettingsScreen from '../containers/SettingsScreen';
 import SignInScreen from '../containers/SignInScreen';
 import SignUpScreen from '../containers/SignUpScreen';
@@ -42,19 +47,52 @@ const AuthStackScreen = () => (
   </AuthStack.Navigator>
 );
 
+const PERSISTENCE_KEY = 'NAVIGATION_STATE';
+
 export default () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [isReady, setIsReady] = useState(false);
+  const [initialState, setInitialState] = useState();
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(!isLoading);
-      setUser({});
-    }, 500);
-  }, []);
+    const restoreState = async () => {
+      try {
+        const initialUrl = await Linking.getInitialURL();
+
+        if (Platform.OS !== 'web' && initialUrl == null) {
+          // Only restore state if there's no deep link and we're not on web
+          const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
+          const state = savedStateString
+            ? JSON.parse(savedStateString)
+            : undefined;
+
+          if (state !== undefined) {
+            setInitialState(state);
+          }
+        }
+      } finally {
+        setUser({});
+        setIsLoading(false);
+        setIsReady(true);
+      }
+    };
+
+    if (!isReady) {
+      restoreState();
+    }
+  }, [isReady]);
+
+  if (!isReady) {
+    return <Loading />;
+  }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      initialState={initialState}
+      onStateChange={(state) =>
+        AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
+      }>
       {isLoading ? <Loading /> : user ? <AppTabsScreen /> : <AuthStackScreen />}
     </NavigationContainer>
   );
